@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Mastery Roadmap - Gaming Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: #2a2a3e;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .campaign-goal {
+            background: linear-gradient(90deg, #3d3d1f, #4a4a2a);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 3px solid #8b7500;
+        }
+
+        .campaign-goal h2 {
+            color: #ffb74d;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .campaign-goal p {
+            color: #d0b070;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        .progress-bar {
+            background: #3a3a4e;
+            border-radius: 12px;
+            height: 30px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .phase {
+            background: #2a2a3e;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .phase-title {
+            color: #667eea;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phase-duration {
+            background: #3a3a4e;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #b0b0b0;
+        }
+
+        .connection-note {
+            background: #1e3a5f;
+            border-left: 4px solid #2196f3;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-style: italic;
+            color: #64b5f6;
+        }
+
+        .topic {
+            background: #35354d;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .topic:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .topic.completed {
+            background: #2d4a2d;
+            border-left-color: #4caf50;
+            opacity: 0.8;
+        }
+
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topic-name {
+            font-weight: 600;
+            color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .topic-details {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #4a4a5e;
+            color: #b0b0b0;
+            font-size: 0.95em;
+            display: none;
+        }
+
+        .topic.expanded .topic-details {
+            display: block;
+        }
+
+        .resources {
+            margin-top: 10px;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85em;
+            margin-right: 8px;
+            margin-top: 5px;
+        }
+
+        .resource-link:hover {
+            background: #5568d3;
+        }
+
+        .tips {
+            background: #3d3d1f;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .tips h3 {
+            color: #ffb74d;
+            margin-bottom: 10px;
+        }
+
+        .tip-item {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #c0c0c0;
+        }
+
+        .tip-item:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+
+        code {
+            background: #3a3a4e;
+            color: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre {
+            background: #1e1e2e !important;
+            color: #e0e0e0 !important;
+            border: 1px solid #3a3a4e;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        p[style*="background: #fff3cd"] {
+            background: #3d3d1f !important;
+            color: #d0b070 !important;
+            border-left: 4px solid #ffc107;
+        }
+
+        p[style*="background: #d4edda"] {
+            background: #1b3d1f !important;
+            color: #a8d5a8 !important;
+            border-left: 4px solid #4caf50;
+        }
+
+        p[style*="background: #e3f2fd"] {
+            background: #1e3a5f !important;
+            color: #64b5f6 !important;
+            border-left: 4px solid #2196f3;
+        }
+
+        ul {
+            color: #c0c0c0;
+        }
+
+        ol {
+            color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 JavaScript Mastery Roadmap</h1>
+            <p class="subtitle">Gaming Edition - Build Your Character Sheet System</p>
+            
+            <div class="campaign-goal">
+                <h2>🏆 Campaign End Goal</h2>
+                <p><strong>Final Project: Complete TTRPG Character Sheet Web App</strong></p>
+                <p>Every exercise builds toward this! You'll create a character sheet manager for your tabletop RPGs with:</p>
+                <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                    <li>✅ Character creation with stats, inventory, and abilities</li>
+                    <li>✅ Dice roller that saves roll history</li>
+                    <li>✅ Save/load characters from browser storage</li>
+                    <li>✅ Interactive UI to modify stats in real-time</li>
+                </ul>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+        </header>
+
+        <div class="tips">
+            <h3>📋 How to Use This Roadmap</h3>
+            <div class="tip-item"><strong>Step 1:</strong> Click on a topic box to expand it and see the project</div>
+            <div class="tip-item"><strong>Step 2:</strong> Build the project following the numbered steps</div>
+            <div class="tip-item"><strong>Step 3:</strong> Test it works before checking the box</div>
+            <div class="tip-item"><strong>Step 4:</strong> Move to the next topic - they build on each other!</div>
+            <div class="tip-item"><strong>Step 5:</strong> Keep your code - you'll reuse it in the final project</div>
+        </div>
+
+        <div class="tips">
+            <h3>⚔️ Learning Rules (Non-Negotiable)</h3>
+            <div class="tip-item"><strong>Rule 1:</strong> Do topics in exact order - don't skip</div>
+            <div class="tip-item"><strong>Rule 2:</strong> Finish each project completely before moving on</div>
+            <div class="tip-item"><strong>Rule 3:</strong> Try solving problems yourself for 20 minutes first</div>
+            <div class="tip-item"><strong>Rule 4:</strong> Save all your code - later projects reuse earlier code</div>
+            <div class="tip-item"><strong>Rule 5:</strong> If you use AI help, rebuild from scratch without AI after</div>
+        </div>
+
+        <!-- Phase 1 -->
+        <div class="phase">
+            <div class="phase-header">
+                <h2 class="phase-title">
+                    <span>📚</span> Arc 1: Character Stats Foundation
+                </h2>
+                <span class="phase-duration">3-4 weeks</span>
+            </div>
+
+            <div class="connection-note">
+                🔗 <strong>How Arc 1 connects:</strong> You're building the basic stat calculation system that your character sheet will use. Each project adds a new stat system feature.
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        1.1 - Variables & Types: Stat Calculator
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> let vs const, primitives, type coercion</p>
+                    
+                    <p><strong>🎲 Project: D&D Stat Calculator</strong></p>
+                    
+                    <p><strong>What to build:</strong> A function that calculates final stats with modifiers</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>statCalculator.js</code></li>
+                        <li>Write function: <code>calculateStat(baseStat, racialBonus, itemBonus, level)</code></li>
+                        <li>Formula: baseStat + racialBonus + itemBonus + (level bonus if level > 5)</li>
+                        <li>Test with mixed types (some strings, some numbers)</li>
+                        <li>Return object: <code>{total: X, breakdown: "Base: X, Racial: Y..."}</code></li>
+                    </ol>
+
+                    <p style="background: #fff3cd; padding: 10px; border-radius: 4px; margin: 10px 0;">
+                        <strong>Test cases:</strong><br>
+                        <code>calculateStat(15, "2", 3, "7")</code> → total: 22<br>
+                        <code>calculateStat(10, 0, "", 3)</code> → total: 10 (empty string = 0)<br>
+                    </p>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> Function handles all input types & returns correct totals
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/variables" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        1.2 - Functions: Stat Modifier System
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> Functions, parameters, return values, arrow functions</p>
+                    <p class="connection-note">🔗 Uses the stat calculator from 1.1</p>
+                    
+                    <p><strong>🎲 Project: D&D Modifier Calculator</strong></p>
+                    
+                    <p><strong>What to build:</strong> Functions that convert D&D stats to modifiers</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>modifierCalculator.js</code></li>
+                        <li>Function 1: <code>getModifier(stat)</code> - returns modifier (stat - 10) / 2, rounded down
+                            <ul><li>Example: stat 16 → modifier +3</li></ul>
+                        </li>
+                        <li>Function 2: <code>formatModifier(modifier)</code> - returns "+3" or "-1" format</li>
+                        <li>Function 3: <code>getSavingThrow(baseStat, proficiency = false)</code>
+                            <ul><li>Returns modifier + 2 if proficient, else just modifier</li></ul>
+                        </li>
+                        <li>Function 4: <code>applyStatFunction(stat, fn)</code> - higher-order function
+                            <ul><li>Takes a stat and a function, applies function to stat</li></ul>
+                        </li>
+                    </ol>
+
+                    <p style="background: #fff3cd; padding: 10px; border-radius: 4px; margin: 10px 0;">
+                        <strong>Test cases:</strong><br>
+                        <code>getModifier(16)</code> → 3<br>
+                        <code>formatModifier(3)</code> → "+3"<br>
+                        <code>getSavingThrow(16, true)</code> → 5<br>
+                    </p>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> All 4 functions work & you can chain them together
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/function-basics" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        1.3 - Closures: Character Inventory
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> Closures, private data, function scope</p>
+                    <p class="connection-note">🔗 This inventory will be part of your final character sheet</p>
+                    
+                    <p><strong>🎒 Project: Private Character Inventory</strong></p>
+                    
+                    <p><strong>What to build:</strong> Inventory system with private storage</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>inventory.js</code></li>
+                        <li>Write: <code>createInventory(maxSlots)</code></li>
+                        <li>Inside, create private variables:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">let items = [];
+let gold = 0;
+let maxWeight = 100;
+let currentWeight = 0;</pre>
+                        </li>
+                        <li>Create methods:
+                            <ul>
+                                <li><code>addItem(name, weight)</code> - checks weight limit</li>
+                                <li><code>removeItem(name)</code></li>
+                                <li><code>addGold(amount)</code></li>
+                                <li><code>spendGold(amount)</code> - checks if enough gold</li>
+                                <li><code>getInventory()</code> - returns snapshot of current state</li>
+                            </ul>
+                        </li>
+                        <li>Return object with just the methods (NOT the data)</li>
+                    </ol>
+
+                    <p style="background: #fff3cd; padding: 10px; border-radius: 4px; margin: 10px 0;">
+                        <strong>Test:</strong><br>
+                        <code>const inv = createInventory(10);</code><br>
+                        <code>inv.addItem("Sword", 10);</code><br>
+                        <code>inv.addGold(500);</code><br>
+                        <code>console.log(inv.items);</code> → undefined ✓ (private!)<br>
+                        <code>console.log(inv.getInventory());</code> → works ✓
+                    </p>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> Can't access data directly but methods work perfectly
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/closure" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        1.3.5 - For Loops: Dice Roller
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> For loops - how to repeat code a specific number of times</p>
+                    <p class="connection-note">🔗 You'll use loops to roll multiple dice in your final app</p>
+                    
+                    <p><strong>🎲 Project: Multi-Dice Roller</strong></p>
+                    
+                    <p><strong>What to build:</strong> A function that rolls multiple dice and stores results</p>
+                    
+                    <p><strong>Understanding for loops first:</strong></p>
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 6px; margin: 10px 0;">
+                        <p><strong>A for loop has 3 parts:</strong></p>
+                        <pre style="background: #f0f0f0; padding: 10px; margin: 10px 0;">for (let i = 0; i < 5; i++) {
+  // Code here runs 5 times
+}</pre>
+                        <p><strong>Part 1:</strong> <code>let i = 0</code> - Start counting at 0</p>
+                        <p><strong>Part 2:</strong> <code>i < 5</code> - Keep going while i is less than 5</p>
+                        <p><strong>Part 3:</strong> <code>i++</code> - Add 1 to i after each loop</p>
+                        
+                        <p style="margin-top: 10px;"><strong>What happens:</strong></p>
+                        <ul style="margin: 5px 0 5px 20px;">
+                            <li>Loop 1: i = 0, run the code</li>
+                            <li>Loop 2: i = 1, run the code</li>
+                            <li>Loop 3: i = 2, run the code</li>
+                            <li>Loop 4: i = 3, run the code</li>
+                            <li>Loop 5: i = 4, run the code</li>
+                            <li>Stop (because 5 is NOT less than 5)</li>
+                        </ul>
+                        
+                        <p style="margin-top: 10px;"><strong>Think of i as:</strong> "Which loop number am I on?"</p>
+                    </div>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>diceRoller.js</code></li>
+                        <li>Write a function: <code>rollMultipleDice(numberOfDice, sides)</code>
+                            <ul style="margin: 5px 0; padding-left: 20px;">
+                                <li>numberOfDice = how many dice to roll (like 3)</li>
+                                <li>sides = what kind of dice (like 20 for d20)</li>
+                            </ul>
+                        </li>
+                        <li>Inside the function:
+                            <ul style="margin: 5px 0; padding-left: 20px;">
+                                <li>Create an empty array: <code>let rolls = []</code></li>
+                                <li>Make a for loop that runs numberOfDice times</li>
+                                <li>Inside the loop: roll one die and push to the array</li>
+                                <li>To roll one die: <code>Math.floor(Math.random() * sides) + 1</code></li>
+                            </ul>
+                        </li>
+                        <li>After the loop, return the rolls array</li>
+                    </ol>
+
+                    <p style="background: #fff3cd; padding: 10px; border-radius: 4px; margin: 10px 0;">
+                        <strong>Example:</strong><br>
+                        <code>rollMultipleDice(3, 20)</code> might return: <code>[15, 8, 19]</code><br>
+                        <code>rollMultipleDice(2, 6)</code> might return: <code>[4, 2]</code><br>
+                        (Your results will be random!)
+                    </p>
+
+                    <p style="background: #fff3cd; padding: 10px; border-radius: 4px; margin: 10px 0;">
+                        <strong>Step-by-step example of the loop:</strong><br>
+                        If numberOfDice = 3:
+                        <ul style="margin: 5px 0 0 20px;">
+                            <li>Loop 1 (i=0): Roll die, get 15, push to array → [15]</li>
+                            <li>Loop 2 (i=1): Roll die, get 8, push to array → [15, 8]</li>
+                            <li>Loop 3 (i=2): Roll die, get 19, push to array → [15, 8, 19]</li>
+                            <li>Stop (i=3 is NOT < 3)</li>
+                            <li>Return [15, 8, 19]</li>
+                        </ul>
+                    </p>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong><br>
+                        • <code>rollMultipleDice(3, 20)</code> returns array with 3 random numbers<br>
+                        • <code>rollMultipleDice(5, 6)</code> returns array with 5 random numbers<br>
+                        • You understand what <code>i</code> represents in the loop
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/while-for" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        1.4 - Arrays: Party Member Manager
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> map, filter, reduce - array methods</p>
+                    <p class="connection-note">🔗 This will let you manage multiple characters in your final app</p>
+                    
+                    <p><strong>⚔️ Project: D&D Party Analyzer</strong></p>
+                    
+                    <p><strong>What to build:</strong> Party management using array methods (NO for loops!)</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>partyManager.js</code></li>
+                        <li>Start with this data:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">const party = [
+  { name: "Thorin", class: "Fighter", hp: 45, maxHp: 50, level: 5 },
+  { name: "Elara", class: "Wizard", hp: 20, maxHp: 30, level: 5 },
+  { name: "Brok", class: "Cleric", hp: 35, maxHp: 40, level: 4 }
+];</pre>
+                        </li>
+                        <li><strong>Task 1:</strong> Use .map() to add "hpPercentage" to each member
+                            <ul style="margin: 5px 0; padding-left: 20px;">
+                                <li>Calculate: (hp / maxHp) * 100</li>
+                                <li>Use Math.ceil() to round up</li>
+                                <li>Store result in new variable: <code>const partyWithHP = party.map(...)</code></li>
+                                <li>Keep all existing properties using spread operator (...)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Task 2:</strong> Use .filter() to find members below 75% HP
+                            <ul style="margin: 5px 0; padding-left: 20px;">
+                                <li>Filter partyWithHP array</li>
+                                <li>Check if hpPercentage < 75</li>
+                                <li>Store result: <code>const needHealing = partyWithHP.filter(...)</code></li>
+                            </ul>
+                        </li>
+                        <li><strong>Task 3:</strong> Use .reduce() to get total party HP
+                            <ul style="margin: 5px 0; padding-left: 20px;">
+                                <li>Add up the hp property from each member</li>
+                                <li>Start at 0</li>
+                                <li>Store result: <code>const totalHP = partyWithHP.reduce(...)</code></li>
+                            </ul>
+                        </li>
+                        <li><strong>Task 4:</strong> Use .reduce() to find member with lowest HP%
+                            <ul style="margin: 5px 0; padding-left: 20px;">
+                                <li>Compare each member's hpPercentage</li>
+                                <li>Keep the member with the lower percentage</li>
+                                <li>Start with first member: arr[0]</li>
+                                <li>Return the entire member object, not just the percentage</li>
+                            </ul>
+                        </li>
+                        <li><strong>Task 5:</strong> Chain .filter() twice: Find fighters below 50% HP
+                            <ul style="margin: 5px 0; padding-left: 20px;">
+                                <li>First .filter() for class === "Fighter"</li>
+                                <li>Then .filter() for hpPercentage < 50</li>
+                                <li>Result will be empty array (no fighters below 50%)</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p style="background: #fff3cd; padding: 10px; border-radius: 4px; margin: 10px 0;">
+                        <strong>Expected results:</strong><br>
+                        Task 1: All members have hpPercentage property<br>
+                        Task 2: Elara (67%) and Brok (88%)<br>
+                        Task 3: Total HP = 100<br>
+                        Task 4: Elara (lowest at 67%)<br>
+                        Task 5: Empty array []
+                    </p>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> All 5 tasks work correctly using ONLY array methods (no for loops!)
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/array-methods" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        1.5 - this Keyword: Ability System
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> this binding, call/apply/bind, context</p>
+                    <p class="connection-note">🔗 Character abilities will use this for the final sheet</p>
+                    
+                    <p><strong>✨ Project: Character Ability System</strong></p>
+                    
+                    <p><strong>What to build:</strong> Spell/ability system using 'this' correctly</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>abilitySystem.js</code></li>
+                        <li>Create character object:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">const wizard = {
+  name: "Gandalf",
+  mana: 100,
+  maxMana: 100,
+  castSpell: function(spellCost, spellName) {
+    if (this.mana >= spellCost) {
+      this.mana -= spellCost;
+      console.log(this.name + " casts " + spellName);
+      return true;
+    }
+    return false;
+  }
+};</pre>
+                        </li>
+                        <li>Test: <code>wizard.castSpell(30, "Fireball")</code> - should work</li>
+                        <li>Break it: <code>const cast = wizard.castSpell; cast(30, "Fireball");</code> - fails!</li>
+                        <li>Fix with bind: <code>const castBound = wizard.castSpell.bind(wizard);</code></li>
+                        <li>Add restoreMana method with setTimeout:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">restoreMana: function() {
+  setTimeout(() => {
+    this.mana = this.maxMana; // Arrow function keeps 'this'
+    console.log(this.name + " mana restored!");
+  }, 1000);
+}</pre>
+                        </li>
+                    </ol>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> You understand WHY it breaks and can fix it with bind/arrows
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/object-methods" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="phase">
+            <div class="phase-header">
+                <h2 class="phase-title">
+                    <span>⚡</span> Arc 2: Dice Roller & Async Actions
+                </h2>
+                <span class="phase-duration">2-3 weeks</span>
+            </div>
+
+            <div class="connection-note">
+                🔗 <strong>How Arc 2 connects:</strong> You're building the dice rolling engine and learning async code. The final app will use this for rolling attacks, saves, and skill checks.
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        2.1 - Event Loop: Combat Turn Timer
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> Event loop, setTimeout, execution order</p>
+                    
+                    <p><strong>⏱️ Project: Initiative Tracker</strong></p>
+                    
+                    <p><strong>What to build:</strong> Turn-based combat timer</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>combatTimer.js</code></li>
+                        <li>First, predict this output:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">console.log("Combat starts");
+setTimeout(() => console.log("Thorin's turn"), 0);
+Promise.resolve().then(() => console.log("Roll initiative"));
+console.log("Everyone ready?");</pre>
+                        </li>
+                        <li>Build <code>startCombatRound(participants)</code>:
+                            <ul>
+                                <li>Takes array: ["Thorin", "Elara", "Goblin"]</li>
+                                <li>Each participant gets 6 second turn</li>
+                                <li>Use setTimeout to announce each turn</li>
+                                <li>Log "Combat round complete" at end</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> Turns happen in correct order with delays
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/event-loop" class="resource-link" target="_blank">Guide</a>
+                        <a href="https://www.jsv9000.app/" class="resource-link" target="_blank">Visualizer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        2.2 - Promises: Dice Roll System
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> Promises, .then(), .catch(), Promise.all</p>
+                    <p class="connection-note">🔗 This dice roller will be the core of your character sheet's actions!</p>
+                    
+                    <p><strong>🎲 Project: Promise-Based Dice Roller</strong></p>
+                    
+                    <p><strong>What to build:</strong> Async dice rolling with animation delays</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>diceRoller.js</code></li>
+                        <li>Write function that returns a Promise:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">function rollDice(sides, count = 1) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const rolls = [];
+      for (let i = 0; i < count; i++) {
+        rolls.push(Math.floor(Math.random() * sides) + 1);
+      }
+      const total = rolls.reduce((sum, roll) => sum + roll, 0);
+      resolve({ rolls, total, formula: count + "d" + sides });
+    }, 500); // 500ms "animation" delay
+  });
+}</pre>
+                        </li>
+                        <li><strong>Task 1:</strong> Roll 1d20 and log result</li>
+                        <li><strong>Task 2:</strong> Chain: Roll 1d20 for attack, THEN 2d6 for damage</li>
+                        <li><strong>Task 3:</strong> Use Promise.all to roll 3 characters' initiative at once</li>
+                        <li><strong>Task 4:</strong> Add advantage (roll 2d20, take higher)</li>
+                    </ol>
+
+                    <p style="background: #fff3cd; padding: 10px; border-radius: 4px; margin: 10px 0;">
+                        <strong>Example usage:</strong><br>
+                        <code>rollDice(20).then(result => console.log("Rolled:", result.total));</code><br>
+                        <code>Promise.all([rollDice(20), rollDice(20), rollDice(20)])</code>
+                    </p>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> Can roll dice with delays & chain multiple rolls
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/promise-basics" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        2.3 - Async/Await: Attack Roll System
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> async/await, try/catch, parallel vs sequential</p>
+                    <p class="connection-note">🔗 Uses the dice roller from 2.2 in cleaner syntax</p>
+                    
+                    <p><strong>⚔️ Project: Complete Attack System</strong></p>
+                    
+                    <p><strong>What to build:</strong> Attack resolver using async/await</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>attackSystem.js</code></li>
+                        <li>Import your rollDice function from 2.2</li>
+                        <li>Write async function:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">async function makeAttack(attackBonus, damageBonus, targetAC) {
+  // Roll attack (d20 + bonus)
+  const attackRoll = await rollDice(20);
+  const attackTotal = attackRoll.total + attackBonus;
+  
+  if (attackTotal >= targetAC) {
+    // Hit! Roll damage
+    const damageRoll = await rollDice(6, 2); // 2d6
+    const totalDamage = damageRoll.total + damageBonus;
+    return { hit: true, damage: totalDamage, attackRoll: attackTotal };
+  } else {
+    return { hit: false, attackRoll: attackTotal };
+  }
+}</pre>
+                        </li>
+                        <li>Add try/catch for error handling</li>
+                        <li>Compare sequential vs parallel:
+                            <ul>
+                                <li>Sequential: Attack then damage (one after another)</li>
+                                <li>Parallel: Roll 3 party members' attacks at once</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> Attack system works & you understand when to use parallel
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/async-await" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        2.4 - Fetch API: Random Encounter Generator
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> fetch(), API calls, JSON, error handling</p>
+                    
+                    <p><strong>🐉 Project: D&D Monster Fetcher</strong></p>
+                    
+                    <p><strong>What to build:</strong> Fetch monsters from D&D 5e API</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create file: <code>monsterFetcher.js</code></li>
+                        <li>API to use: <code>https://www.dnd5eapi.co/api/monsters/</code></li>
+                        <li>Write async function:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">async function getMonster(name) {
+  try {
+    const response = await fetch(`https://www.dnd5eapi.co/api/monsters/${name}`);
+    if (!response.ok) throw new Error("Monster not found");
+    const data = await response.json();
+    return {
+      name: data.name,
+      hp: data.hit_points,
+      ac: data.armor_class,
+      challenge: data.challenge_rating
+    };
+  } catch (error) {
+    console.error("Error:", error);
+    return null;
+  }
+}</pre>
+                        </li>
+                        <li>Test with: "goblin", "dragon", "owlbear"</li>
+                        <li>Add search: Fetch list of all monsters, filter by CR</li>
+                        <li>Use Promise.all to fetch 3 monsters at once for encounter</li>
+                    </ol>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> Can fetch monsters & handle errors gracefully
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" class="resource-link" target="_blank">MDN</a>
+                        <a href="https://www.dnd5eapi.co/" class="resource-link" target="_blank">D&D API</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="phase">
+            <div class="phase-header">
+                <h2 class="phase-title">
+                    <span>🌐</span> Arc 3: Interactive Character Sheet
+                </h2>
+                <span class="phase-duration">2-3 weeks</span>
+            </div>
+
+            <div class="connection-note">
+                🔗 <strong>How Arc 3 connects:</strong> Now you build the actual UI! You'll combine everything from Arcs 1 & 2 into a working character sheet.
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        3.1 - DOM: Character Sheet Display
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> DOM manipulation, createElement, classList</p>
+                    <p class="connection-note">🔗 Uses stat calculator (1.1), modifier system (1.2)</p>
+                    
+                    <p><strong>📄 Project: Dynamic Character Sheet</strong></p>
+                    
+                    <p><strong>What to build:</strong> Generate character sheet HTML from data</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Create files: <code>index.html</code>, <code>characterSheet.js</code></li>
+                        <li>Character data:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">const character = {
+  name: "Thorin Oakenshield",
+  class: "Fighter",
+  level: 5,
+  stats: { str: 16, dex: 12, con: 14, int: 10, wis: 11, cha: 8 },
+  hp: 45,
+  maxHp: 50
+};</pre>
+                        </li>
+                        <li>For EACH stat, createElement a div showing:
+                            <ul>
+                                <li>Stat name ("STR")</li>
+                                <li>Stat value (16)</li>
+                                <li>Modifier (+3) - use your getModifier from 1.2!</li>
+                            </ul>
+                        </li>
+                        <li>NO innerHTML templates - use createElement, appendChild</li>
+                        <li>Add CSS classes for styling</li>
+                    </ol>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> Character sheet displays with calculated modifiers
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/modifying-document" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        3.2 - Events: Interactive Dice Roller UI
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> Event listeners, event delegation, preventDefault</p>
+                    <p class="connection-note">🔗 Uses dice roller from 2.2, displays in sheet from 3.1</p>
+                    
+                    <p><strong>🎲 Project: Clickable Stat Roller</strong></p>
+                    
+                    <p><strong>What to build:</strong> Click any stat to roll a check</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Add click handlers to each stat box</li>
+                        <li>On click: Roll d20 + modifier for that stat</li>
+                        <li>Display result in a "Roll History" section</li>
+                        <li>Use EVENT DELEGATION - one listener on parent, not each stat</li>
+                        <li>Add "Roll with Advantage" button (roll 2d20, take higher)</li>
+                        <li>Create log: "STR Check: Rolled 18 + 3 = 21"</li>
+                    </ol>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> Can click stats to roll & see history
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/events" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        3.3 - LocalStorage: Save/Load Characters
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>What you're learning:</strong> localStorage, JSON, data persistence</p>
+                    <p class="connection-note">🔗 Saves entire character including inventory (1.3), stats (1.1)</p>
+                    
+                    <p><strong>💾 Project: Character Persistence</strong></p>
+                    
+                    <p><strong>What to build:</strong> Save/load characters to browser storage</p>
+                    
+                    <p><strong>Exact steps:</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li>Add "Save Character" button</li>
+                        <li>On click:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">const characterData = JSON.stringify(character);
+localStorage.setItem('myCharacter', characterData);</pre>
+                        </li>
+                        <li>On page load:
+                            <pre style="background: #f0f0f0; padding: 10px; margin: 5px 0;">const saved = localStorage.getItem('myCharacter');
+if (saved) {
+  character = JSON.parse(saved);
+  // Render character sheet
+}</pre>
+                        </li>
+                        <li>Add "Load Character" button to manually reload</li>
+                        <li>Bonus: Save multiple characters in an array</li>
+                    </ol>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ Done when:</strong> Characters persist across page refreshes
+                    </p>
+
+                    <div class="resources">
+                        <a href="https://javascript.info/localstorage" class="resource-link" target="_blank">Guide</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Project -->
+        <div class="phase" style="background: linear-gradient(135deg, #ffd700, #ffed4e); border: 3px solid #daa520;">
+            <div class="phase-header">
+                <h2 class="phase-title" style="color: #8b4513;">
+                    <span>🏆</span> FINAL BOSS: Complete Character Manager
+                </h2>
+                <span class="phase-duration" style="background: #fff; color: #8b4513;">1-2 weeks</span>
+            </div>
+
+            <div class="connection-note" style="background: #fff; border-color: #daa520; color: #654321;">
+                🎯 <strong>YOU'RE READY!</strong> Combine EVERYTHING you built into one epic app!
+            </div>
+
+            <div class="topic" onclick="toggleTopic(this)">
+                <div class="topic-header">
+                    <span class="topic-name">
+                        <input type="checkbox" class="checkbox" onclick="event.stopPropagation(); updateProgress()">
+                        FINAL PROJECT: TTRPG Character Manager
+                    </span>
+                </div>
+                <div class="topic-details">
+                    <p><strong>🎮 What to build:</strong> Complete web app for managing D&D characters</p>
+                    
+                    <p><strong>Required features (use your existing code!):</strong></p>
+                    <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                        <li><strong>Character Sheet Display</strong> (3.1)
+                            <ul>
+                                <li>Show all 6 stats with modifiers (1.1, 1.2)</li>
+                                <li>HP bar, level, class</li>
+                            </ul>
+                        </li>
+                        <li><strong>Inventory System</strong> (1.3)
+                            <ul>
+                                <li>Add/remove items</li>
+                                <li>Track gold</li>
+                                <li>Weight limit</li>
+                            </ul>
+                        </li>
+                        <li><strong>Dice Roller</strong> (2.2, 2.3, 3.2)
+                            <ul>
+                                <li>Click stats to roll checks</li>
+                                <li>Roll attacks with damage (2.3)</li>
+                                <li>Show roll history</li>
+                                <li>Advantage/disadvantage option</li>
+                            </ul>
+                        </li>
+                        <li><strong>Save/Load</strong> (3.3)
+                            <ul>
+                                <li>Save character to localStorage</li>
+                                <li>Load on page refresh</li>
+                                <li>Manage multiple characters</li>
+                            </ul>
+                        </li>
+                        <li><strong>Bonus Features:</strong>
+                            <ul>
+                                <li>Fetch random monsters for encounters (2.4)</li>
+                                <li>Party manager to track multiple PCs (1.4)</li>
+                                <li>Spell slots tracker</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p style="background: #fff3cd; padding: 10px; border-radius: 4px; margin: 10px 0; border: 2px solid #daa520;">
+                        <strong>⚔️ Victory Condition:</strong><br>
+                        You can create a character, roll dice for attacks/checks, manage inventory, and save/load your character - ALL without using ANY AI assistance during the build!
+                    </p>
+
+                    <p style="background: #d4edda; padding: 10px; border-radius: 4px;">
+                        <strong>✅ CAMPAIGN COMPLETE WHEN:</strong><br>
+                        • All features work smoothly<br>
+                        • Code is organized into modules<br>
+                        • You can explain how every part works<br>
+                        • You built it yourself from your previous code!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips" style="margin-top: 30px;">
+            <h3>📚 Where to Learn (In Order of Importance)</h3>
+            
+            <p style="margin: 15px 0;"><strong>1. JavaScript.info (START HERE)</strong></p>
+            <div style="margin-left: 20px; margin-bottom: 15px;">
+                <p>🔗 <a href="https://javascript.info" target="_blank" style="color: #667eea;">https://javascript.info</a></p>
+                <p style="margin-top: 5px;">• Read this BEFORE writing code for each topic<br>
+                • Clear explanations with examples</p>
+            </div>
+
+            <p style="margin: 15px 0;"><strong>2. MDN Web Docs (For Reference)</strong></p>
+            <div style="margin-left: 20px; margin-bottom: 15px;">
+                <p>🔗 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" style="color: #667eea;">https://developer.mozilla.org</a></p>
+                <p style="margin-top: 5px;">• Official documentation<br>
+                • Use when you need exact details</p>
+            </div>
+        </div>
+
+        <div class="tips" style="margin-top: 20px;">
+            <h3>❓ When You Get Stuck (Follow This Exact Order)</h3>
+            <ol style="margin: 10px 0; padding-left: 25px; line-height: 1.8;">
+                <li><strong>Try for 20 minutes yourself</strong> - Think hard about it</li>
+                <li><strong>Read error messages</strong> - They tell you what's wrong</li>
+                <li><strong>Console.log everything</strong> - See what variables contain</li>
+                <li><strong>Search JavaScript.info</strong> - Look for the topic</li>
+                <li><strong>Search MDN</strong> - Check official docs</li>
+                <li><strong>Google the error</strong> - Others have seen it</li>
+                <li><strong>Ask AI last</strong> - And understand the answer!</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function toggleTopic(element) {
+            element.classList.toggle('expanded');
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checkbox');
+            const checked = document.querySelectorAll('.checkbox:checked').length;
+            const total = checkboxes.length;
+            const percentage = Math.round((checked / total) * 100);
+            
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+
+            checkboxes.forEach(cb => {
+                const topic = cb.closest('.topic');
+                if (cb.checked) {
+                    topic.classList.add('completed');
+                } else {
+                    topic.classList.remove('completed');
+                }
+            });
+
+            localStorage.setItem('jsRoadmapProgress', JSON.stringify(
+                Array.from(checkboxes).map(cb => cb.checked)
+            ));
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('jsRoadmapProgress');
+            if (saved) {
+                const progressData = JSON.parse(saved);
+                const checkboxes = document.querySelectorAll('.checkbox');
+                checkboxes.forEach((cb, index) => {
+                    if (progressData[index]) cb.checked = true;
+                });
+                updateProgress();
+            }
+        });
+    </script>
+</body>
+</html>
