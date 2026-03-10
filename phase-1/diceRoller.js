@@ -12,9 +12,3 @@ function rollDice(sides, count = 1) {
         }, 500);
     })
 }
-
-rollDice(20).then(result => {
-    console.log(result.rolls)
-    console.log(result.total)
-    console.log(result.formula)
-})
