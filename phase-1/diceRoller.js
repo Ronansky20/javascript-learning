@@ -1,4 +1,4 @@
-function rollDice(sides, count = 1) {
+export function rollDice(sides, count = 1) {
     return new Promise((resolve) => {
         setTimeout(() => {
             const rolls = []
