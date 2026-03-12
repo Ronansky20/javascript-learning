@@ -1,4 +1,4 @@
-function getModifier(stat) {
+export function getModifier(stat) {
     return Math.floor((stat - 10) / 2);
 }
 

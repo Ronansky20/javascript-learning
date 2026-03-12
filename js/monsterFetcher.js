@@ -19,4 +19,4 @@ async function getMonster(name) {
 
 // getMonster('goblin').then(result => console.log(result))
 
-Promise.all([getMonster('goblin'), getMonster('adult-red-dragon'), getMonster('owlbear')]).then(result => console.log(result))
+// Promise.all([getMonster('goblin'), getMonster('adult-red-dragon'), getMonster('owlbear')]).then(result => console.log(result))
