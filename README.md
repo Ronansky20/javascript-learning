@@ -29,6 +29,7 @@ Each file is a standalone exercise from Arc 1 and Arc 2:
 | `combatTimer.js` | Event loop & setTimeout — sequential turn announcements with delays |
 | `attackSystem.js` | Async/await & try/catch — full attack resolver using the dice roller |
 | `monsterFetcher.js` | Fetch API — pulls live monster data from the D&D 5e API |
+| `index.html` | DOM manipulation — character sheet built dynamically with JavaScript |
 
 Arc 3 exercises move into the browser and will live in the root alongside `index.html`.
 

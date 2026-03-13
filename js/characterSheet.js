@@ -8,20 +8,14 @@ const character = {
 };
 
 const statArray = ["str", "dex", "con", "int", "wis", "cha"]
-
 const sheetDiv = document.getElementById("characterSheet")
-const statDiv = document.createElement("div")
-
-
 
 for (let i = 0; i < statArray.length; i++) {
     const statName = statArray[i]
-
     const statValue = character.stats[statName]
 
-    console.log(statName, ":", statValue)
-
-    statDiv.textContent = statValue;
+    const statDiv = document.createElement("div")
+    statDiv.textContent = `${statName}: ${statValue}`;
 
     sheetDiv.appendChild(statDiv)
 }
