@@ -2,7 +2,7 @@ export function getModifier(stat) {
     return Math.floor((stat - 10) / 2);
 }
 
-function formatModifier(modifier) {
+export function formatModifier(modifier) {
     if (modifier >= 0) {
         return "+" + modifier;
     } else {

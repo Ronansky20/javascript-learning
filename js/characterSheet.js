@@ -1,3 +1,5 @@
+import { getModifier, formatModifier } from "./modifiercalculator.js";
+
 const character = {
     name: "Thorin Oakenshield",
     class: "Fighter",
@@ -13,9 +15,12 @@ const sheetDiv = document.getElementById("characterSheet")
 for (let i = 0; i < statArray.length; i++) {
     const statName = statArray[i]
     const statValue = character.stats[statName]
+    const modifier = getModifier(statValue)
+    const formattedModifier = formatModifier(modifier);
 
     const statDiv = document.createElement("div")
-    statDiv.textContent = `${statName}: ${statValue}`;
+    statDiv.classList.add("stats");
+    statDiv.textContent = `${statName.toUpperCase()}: ${statValue} (${formattedModifier})`;
 
     sheetDiv.appendChild(statDiv)
 }
