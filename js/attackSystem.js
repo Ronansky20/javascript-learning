@@ -1,3 +1,5 @@
+// Arc 2, Exercise 2.3 - Async/Await: full attack resolver with try/catch built on the dice roller
+
 import { rollDice } from "./diceRoller.js";
 
 export async function makeAttack(attackBonus, damageBonus, targetAC) {

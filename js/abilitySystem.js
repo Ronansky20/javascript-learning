@@ -1,3 +1,5 @@
+// Arc 1, Exercise 1.5 - this Keyword: spell casting system demonstrating bind, call, and arrow functions
+
 const wizard = {
     name: "Gandalf",
     mana: 100,

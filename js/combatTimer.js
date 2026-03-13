@@ -1,3 +1,5 @@
+// Arc 2, Exercise 2.1 - Event Loop: sequential combat turns using setTimeout to demonstrate async behaviour
+
 const partyMembers = [
     "Thorin",
     "Elara",

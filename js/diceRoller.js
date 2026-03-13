@@ -1,3 +1,5 @@
+// Arc 1, Exercise 1.3 - Closures: private inventory system using closure to encapsulate state
+
 export function rollDice(sides, count = 1) {
     return new Promise((resolve) => {
         setTimeout(() => {

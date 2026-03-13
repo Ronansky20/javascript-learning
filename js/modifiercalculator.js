@@ -1,3 +1,5 @@
+// Arc 1, Exercise 1.2 - Functions: converts D&D stats to modifiers, includes higher-order function usage
+
 export function getModifier(stat) {
     return Math.floor((stat - 10) / 2);
 }

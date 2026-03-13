@@ -1,3 +1,5 @@
+// Arc 2, Exercise 2.4 - Fetch API: pulls live monster data from the D&D 5e API with error handling
+
 async function getMonster(name) {
     try {
         const response = await fetch(`https://www.dnd5eapi.co/api/monsters/${name}`)

@@ -1,3 +1,5 @@
+// Arc 1, Exercise 1.4 - Array Methods: party analysis using map, filter, and reduce
+
 const party = [
     { name: "Thorin", class: "Fighter", hp: 45, maxHp: 50, level: 5 },
     { name: "Elara", class: "Wizard", hp: 20, maxHp: 30, level: 5 },

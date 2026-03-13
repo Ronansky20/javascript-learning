@@ -1,3 +1,5 @@
+// Arc 1, Exercise 1.3 - Closures: private inventory system using closure to encapsulate state
+
 function createInventory(maxSlots) {
     let items = [];
     let gold = 0;
@@ -34,7 +36,7 @@ function createInventory(maxSlots) {
             gold = gold - amount
         }
         return false
-        
+
     }
 
     const getInventory = () => {
