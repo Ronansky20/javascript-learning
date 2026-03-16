@@ -1,4 +1,5 @@
 import { getModifier, formatModifier } from "./modifiercalculator.js";
+import { rollDice } from "./diceRoller.js";
 
 const character = {
     name: "Thorin Oakenshield",
@@ -11,6 +12,9 @@ const character = {
 
 const statArray = ["str", "dex", "con", "int", "wis", "cha"]
 const sheetDiv = document.getElementById("characterSheet")
+const historyDiv = document.getElementById("rollHistory")
+
+
 
 for (let i = 0; i < statArray.length; i++) {
     const statName = statArray[i]
@@ -23,5 +27,30 @@ for (let i = 0; i < statArray.length; i++) {
     statDiv.textContent = `${statName.toUpperCase()}: ${statValue} (${formattedModifier})`;
 
     sheetDiv.appendChild(statDiv)
+
+    statDiv.dataset.stat = statName
+    statDiv.dataset.modifier = modifier
 }
 
+sheetDiv.addEventListener("click", async (event) => {
+    const clickedElement = event.target
+
+    if (!clickedElement.dataset.stat) {
+        console.error('No data found')
+        return
+    } else {
+        const statName = clickedElement.dataset.stat;
+        const modifier = Number(clickedElement.dataset.modifier);
+
+        const rollResult = await rollDice(20)
+        const modifiedRollResult = rollResult.total + modifier
+        const formattedRollResult = formatModifier(modifiedRollResult)
+        const formattedModifier = formatModifier(modifier)
+
+        const historyListDiv = document.createElement("div")
+
+        historyListDiv.classList.add("rollHistory")
+        historyListDiv.textContent = `The result is: ${statName.toUpperCase()}, ${rollResult.total}, ${formattedModifier}, ${formattedRollResult}`
+        historyDiv.appendChild(historyListDiv)
+    }
+})
