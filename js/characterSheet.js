@@ -14,16 +14,11 @@ const statArray = ["str", "dex", "con", "int", "wis", "cha"]
 const sheetDiv = document.getElementById("characterSheet")
 const historyDiv = document.getElementById("rollHistory")
 const saveCharacterButton = document.getElementById("characterSave")
+const hpDiv = document.getElementById("characterHp")
 
 const savedCharacter = localStorage.getItem('character')
 
-if (savedCharacter) {
-    character = JSON.parse(savedCharacter);
-}
-
-renderCharacterSheet()
-
-function renderCharacterSheet() {
+export function renderCharacterSheet() {
     sheetDiv.innerHTML = ""
     for (let i = 0; i < statArray.length; i++) {
 
@@ -43,33 +38,52 @@ function renderCharacterSheet() {
     }
 }
 
-sheetDiv.addEventListener("click", async (event) => {
-    const clickedElement = event.target
+export function getCharacterHp() {
+    hpDiv.innerHTML = ""
 
-    if (!clickedElement.dataset.stat) {
-        console.error('No data found')
-        return
-    } else {
-        const statName = clickedElement.dataset.stat;
-        const modifier = Number(clickedElement.dataset.modifier);
+    const remainingHp = character.hp
+    const maxHp = character.maxHp
 
-        const rollResult = await rollDice(20)
-        const modifiedRollResult = rollResult.total + modifier
-        const formattedRollResult = formatModifier(modifiedRollResult)
-        const formattedModifier = formatModifier(modifier)
+    const hpRemainingDiv = document.createElement("div")
+    hpRemainingDiv.classList.add("hp")
+    hpRemainingDiv.textContent = `Current HP: ${remainingHp}/${maxHp}`
 
-        const historyListDiv = document.createElement("div")
+    hpDiv.appendChild(hpRemainingDiv)
+}
 
-        historyListDiv.classList.add("rollHistory")
-        historyListDiv.textContent = `The result is: ${statName.toUpperCase()}, ${rollResult.total}, ${formattedModifier}, ${formattedRollResult}`
-        historyDiv.appendChild(historyListDiv)
+export function saveCharacter() {
+    if (savedCharacter) {
+        character = JSON.parse(savedCharacter);
     }
-})
 
-saveCharacterButton.addEventListener("click", () => {
-    const characterJSON = JSON.stringify(character)
-    localStorage.setItem('character', characterJSON)
+    sheetDiv.addEventListener("click", async (event) => {
+        const clickedElement = event.target
 
-    const savedCharacter = localStorage.getItem('character')
-    console.log(`Your character has been saved! ${savedCharacter}`)
-})
+        if (!clickedElement.dataset.stat) {
+            console.error('No data found')
+            return
+        } else {
+            const statName = clickedElement.dataset.stat;
+            const modifier = Number(clickedElement.dataset.modifier);
+
+            const rollResult = await rollDice(20)
+            const modifiedRollResult = rollResult.total + modifier
+            const formattedRollResult = formatModifier(modifiedRollResult)
+            const formattedModifier = formatModifier(modifier)
+
+            const historyListDiv = document.createElement("div")
+
+            historyListDiv.classList.add("rollHistory")
+            historyListDiv.textContent = `The result is: ${statName.toUpperCase()}, ${rollResult.total}, ${formattedModifier}, ${formattedRollResult}`
+            historyDiv.appendChild(historyListDiv)
+        }
+    })
+
+    saveCharacterButton.addEventListener("click", () => {
+        const characterJSON = JSON.stringify(character)
+        localStorage.setItem('character', characterJSON)
+
+        const savedCharacter = localStorage.getItem('character')
+        console.log(`Your character has been saved! ${savedCharacter}`)
+    })
+}
