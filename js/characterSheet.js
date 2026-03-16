@@ -1,10 +1,10 @@
 import { getModifier, formatModifier } from "./modifiercalculator.js";
 import { rollDice } from "./diceRoller.js";
 
-const character = {
+let character = {
     name: "Thorin Oakenshield",
     class: "Fighter",
-    level: 5,
+    level: 7,
     stats: { str: 16, dex: 12, con: 14, int: 10, wis: 11, cha: 8 },
     hp: 45,
     maxHp: 50
@@ -13,23 +13,34 @@ const character = {
 const statArray = ["str", "dex", "con", "int", "wis", "cha"]
 const sheetDiv = document.getElementById("characterSheet")
 const historyDiv = document.getElementById("rollHistory")
+const saveCharacterButton = document.getElementById("characterSave")
 
+const savedCharacter = localStorage.getItem('character')
 
+if (savedCharacter) {
+    character = JSON.parse(savedCharacter);
+}
 
-for (let i = 0; i < statArray.length; i++) {
-    const statName = statArray[i]
-    const statValue = character.stats[statName]
-    const modifier = getModifier(statValue)
-    const formattedModifier = formatModifier(modifier);
+renderCharacterSheet()
 
-    const statDiv = document.createElement("div")
-    statDiv.classList.add("stats");
-    statDiv.textContent = `${statName.toUpperCase()}: ${statValue} (${formattedModifier})`;
+function renderCharacterSheet() {
+    sheetDiv.innerHTML = ""
+    for (let i = 0; i < statArray.length; i++) {
 
-    sheetDiv.appendChild(statDiv)
+        const statName = statArray[i]
+        const statValue = character.stats[statName]
+        const modifier = getModifier(statValue)
+        const formattedModifier = formatModifier(modifier);
 
-    statDiv.dataset.stat = statName
-    statDiv.dataset.modifier = modifier
+        const statDiv = document.createElement("div")
+        statDiv.classList.add("stats");
+        statDiv.textContent = `${statName.toUpperCase()}: ${statValue} (${formattedModifier})`;
+
+        sheetDiv.appendChild(statDiv)
+
+        statDiv.dataset.stat = statName
+        statDiv.dataset.modifier = modifier
+    }
 }
 
 sheetDiv.addEventListener("click", async (event) => {
@@ -53,4 +64,12 @@ sheetDiv.addEventListener("click", async (event) => {
         historyListDiv.textContent = `The result is: ${statName.toUpperCase()}, ${rollResult.total}, ${formattedModifier}, ${formattedRollResult}`
         historyDiv.appendChild(historyListDiv)
     }
+})
+
+saveCharacterButton.addEventListener("click", () => {
+    const characterJSON = JSON.stringify(character)
+    localStorage.setItem('character', characterJSON)
+
+    const savedCharacter = localStorage.getItem('character')
+    console.log(`Your character has been saved! ${savedCharacter}`)
 })
