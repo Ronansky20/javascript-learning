@@ -1,6 +1,6 @@
 // Arc 1, Exercise 1.3 - Closures: private inventory system using closure to encapsulate state
 
-function createInventory(maxSlots) {
+export function createInventory(maxSlots) {
     let items = [];
     let gold = 0;
     let maxWeight = 100;
