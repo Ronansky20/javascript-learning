@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,23 @@
         }
     </style>
 </head>
-    <div id="characterSheet"></div>
-    <div id="characterHp"></div>
-    <btn type="button" id="characterSave">Save character</btn>
-    <div id="rollHistory"></div>
+<div id="characterSheet"></div>
+<div id="characterHp"></div>
+<btn type="button" id="characterSave">Save character</btn>
+<div id="rollHistory"></div>
 <br />
-    <input id="addGoldField" placeholder="How much gold do you want to add?">
-    <btn type="button" id="addGoldButton">Add gold</btn>
-    <div id="ownedGold"></div>
+<div id="weightDiv"></div>
+<form id="addItemForm">
+    <input id="addItemField" placeholder="Excalibur" />
+    <input id="addItemWeightField" placeholder="10" />
+    <button type="button" id="addWeightAndItemButton">Add Item</button>
+</form>
+<br />
+<div id="ownedGold"></div>
+<input id="addGoldField" placeholder="100 gold">
+<button type="button" id="addGoldButton">Add gold</button>
 
-    <script type="module" src="./main.js"></script>
+<script type="module" src="./main.js"></script>
 </body>
+
 </html>
