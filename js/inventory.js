@@ -52,10 +52,10 @@ export function createInventory(maxSlots) {
     };
 }
 
-const inv = createInventory(10)
-inv.addItem("Sword", 10);
-inv.addGold(500);
-inv.spendGold(700);
-inv.removeItem("Sword")
+//const inv = createInventory(10)
+//inv.addItem("Sword", 10);
+//inv.addGold(500);
+//inv.spendGold(700);
+//inv.removeItem("Sword")
 //console.log(inv.items)
 //console.log(inv.getInventory())

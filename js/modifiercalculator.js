@@ -23,8 +23,3 @@ function getSavingThrow(baseStat, proficiency = false) {
 function applyStatFunction(stat, fn) {
     return fn(stat);
 }
-
-console.log(getModifier(16));                    // Should print: 3
-console.log(formatModifier(3));                  // Should print: "+3"
-console.log(getSavingThrow(16, true));           // Should print: 5
-console.log(applyStatFunction(16, getModifier));

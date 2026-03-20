@@ -24,9 +24,6 @@ export function inventorySizeDisplay(inventorySize) {
         const maxWeight = inv.getInventory()[2]
         const availableWeight = maxWeight - currentWeight
 
-        //console.log(remainingWeight)
-        console.log(weightAddFieldInteger)
-
         event.preventDefault();
         if (availableWeight >= weightAddFieldInteger) {
             const itemToBeAdded = addItemField.value
