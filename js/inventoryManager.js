@@ -3,8 +3,14 @@ import { createInventory } from "./inventory.js";
 const weightDiv = document.getElementById("weightDiv")
 const addItemField = document.getElementById("addItemField")
 const addItemForm = document.getElementById("addItemForm")
+const itemDiv = document.getElementById("itemDiv")
+const removeItemField = document.getElementById("removeItemField")
+const removeItemForm = document.getElementById("removeItemForm")
+
 const currentWeightDiv = document.createElement("div")
 const maxWeightDiv = document.createElement("div")
+
+
 
 export function inventorySizeDisplay(inventorySize) {
     const inv = createInventory(inventorySize)
@@ -27,14 +33,55 @@ export function inventorySizeDisplay(inventorySize) {
         event.preventDefault();
         if (availableWeight >= weightAddFieldInteger) {
             const itemToBeAdded = addItemField.value
+            const itemArray = inv.getInventory()[0]
 
             inv.addItem(itemToBeAdded, weightAddFieldInteger)
             console.log('The item has been added', inv.getInventory()[0])
 
             const newCurrentWeight = inv.getInventory()[3]
             currentWeightDiv.textContent = `The current weight of your character is: ${newCurrentWeight}`
+
+            console.log(itemArray)
+
+            itemDiv.innerHTML = ''
+            for (let i = 0; i < itemArray.length; i++) {
+                const item = itemArray[i];
+                const itemListDiv = document.createElement("div")
+
+                itemListDiv.textContent = item.name
+                itemDiv.appendChild(itemListDiv)
+
+                itemDiv.dataset.name = item.name
+            }
         } else {
             console.log(`You don't have enough space for this item...`)
+        }
+    })
+
+    removeItemForm.addEventListener("submit", function (event) {
+        const itemRemoveFieldValue = document.getElementById("removeItemField").value
+        const itemArray = inv.getInventory()[0]
+
+        event.preventDefault();
+        if (itemArray.some(item => item.name === itemRemoveFieldValue)) {
+            inv.removeItem(itemRemoveFieldValue)
+
+            const newCurrentWeight = inv.getInventory()[3]
+            currentWeightDiv.textContent = `The current weight of your character is: ${newCurrentWeight}`
+
+            itemDiv.innerHTML = ''
+
+            const updatedArray = inv.getInventory()[0]
+            for (let i = 0; i < updatedArray.length; i++) {
+                const item = updatedArray[i];
+                const itemListDiv = document.createElement("div")
+
+                itemListDiv.textContent = item.name
+                itemDiv.appendChild(itemListDiv)
+            }
+        } else {
+            console.log(`This item is not in your inventory`)
+            console.log(itemArray)
         }
     })
 }

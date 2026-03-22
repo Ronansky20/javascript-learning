@@ -2,7 +2,7 @@ Character Sheet Display (3.1)
     [x]: Show all 6 stats with modifiers (1.1, 1.2) <- This is already done
     [x]: HP bar, level, class <- Done
 Inventory System (1.3)
-    [ ]: Add/remove items <- Partially done, remove items needs to be made inventory.js, two input fields, one for item name and the other for weight. Then button with "Add item"
+    [x]: Add/remove items <- Done
     [x]: Track gold <- div showing gold: amount currently owned
     [x]: Weight limit <- amount of weght in inventory and what is still available
     [ ]: Dice Roller (2.2, 2.3, 3.2) <- dice tray with buttons for commonly used dice combinations

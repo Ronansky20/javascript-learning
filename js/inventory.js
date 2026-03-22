@@ -19,6 +19,7 @@ export function createInventory(maxSlots) {
     const removeItem = (name) => {
         for (let i = 0; i < items.length; i++) {
             if (items[i].name === name) {
+                currentWeight -= items[i].weight
                 items.splice(i, 1)
                 return items
             }
