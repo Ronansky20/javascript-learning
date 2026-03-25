@@ -24,4 +24,4 @@ export async function makeAttack(attackBonus, damageBonus, targetAC) {
     }
 }
 
-makeAttack(5, 3, 15).then(result => console.log(result))
+//makeAttack(5, 3, 15).then(result => console.log(result))

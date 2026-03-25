@@ -1,11 +1,14 @@
 import { getModifier, formatModifier } from "./modifiercalculator.js";
 import { rollDice } from "./diceRoller.js";
+import { makeAttack } from "./attackSystem.js";
 
 let character = {
     name: "Thorin Oakenshield",
     class: "Fighter",
     level: 7,
     stats: { str: 16, dex: 12, con: 14, int: 10, wis: 11, cha: 8 },
+    weaponAttackBonus: 2,
+    weaponDamageBonus: 2,
     hp: 45,
     maxHp: 50
 };
@@ -15,8 +18,13 @@ const sheetDiv = document.getElementById("characterSheet")
 const historyDiv = document.getElementById("rollHistory")
 const saveCharacterButton = document.getElementById("characterSave")
 const hpDiv = document.getElementById("characterHp")
+const rollAttackButton = document.getElementById("rollAttackButton")
+const attackRollHistoryDiv = document.getElementById("attackRollHistory")
 
-const savedCharacter = localStorage.getItem('character')
+const savedCharacter = localStorage.getItem('character');
+if (savedCharacter) {
+    character = JSON.parse(savedCharacter);
+}
 
 export function renderCharacterSheet() {
     sheetDiv.innerHTML = ""
@@ -51,11 +59,34 @@ export function getCharacterHp() {
     hpDiv.appendChild(hpRemainingDiv)
 }
 
-export function saveCharacter() {
-    if (savedCharacter) {
-        character = JSON.parse(savedCharacter);
-    }
+export function rollDamage() {
+    rollAttackButton.addEventListener("click", async () => {
+        const targetAC = 15
 
+        const attackModifier = getModifier(character.stats.dex)
+        const weaponAttackBonus = character.weaponAttackBonus
+
+        const attackBonus = attackModifier + weaponAttackBonus
+
+        const damageModifier = getModifier(character.stats.str)
+        const weaponDamageBonus = character.weaponDamageBonus
+
+        const damageBonus = damageModifier + weaponDamageBonus
+        const attackRoll = await makeAttack(attackBonus, damageBonus, targetAC)
+
+        const attackRollHistory = document.createElement("div")
+
+        if (attackRoll.hit === true) {
+            attackRollHistory.textContent = `You hit! You rolled a: ${attackRoll.attackRoll}`
+        } else {
+            attackRollHistory.textContent = `You missed.... You rolled a: ${attackRoll.attackRoll}`
+        }
+
+        attackRollHistoryDiv.appendChild(attackRollHistory)
+    })
+}
+
+export function saveCharacter() {
     sheetDiv.addEventListener("click", async (event) => {
         const clickedElement = event.target
 
