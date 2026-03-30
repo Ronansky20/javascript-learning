@@ -14,3 +14,18 @@ export function rollDice(sides, count = 1) {
         }, 500);
     })
 }
+
+// const twiceDice = [
+//     rollDice(20, 2).then(result => result.total),
+//     rollDice(20, 2).then(result => result.total)
+// ]
+
+// Promise.all(twiceDice).then(results => {
+//     const [num1, num2] = results
+
+//     if (num1 > num2) {
+//         console.log(`The higher number is: ${num1} num1`)
+//     } else if (num2 > num1) {
+//         console.log(`the higher number is ${num2} num2`)
+//     }
+// })

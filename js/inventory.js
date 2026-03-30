@@ -1,62 +1,34 @@
-// Arc 1, Exercise 1.3 - Closures: private inventory system using closure to encapsulate state
+import { character } from "./characterSheet.js";
 
-export function createInventory(maxSlots) {
-    let items = [];
-    let gold = 0;
-    let maxWeight = 100;
-    let currentWeight = 0;
-
-    const addItem = (name, weight) => {
-        if (items.length >= maxSlots || currentWeight + weight > maxWeight) {
-            return false;
-        } else {
-            items.push({ name: name, weight: weight });
-            currentWeight += weight;
-            return items;
-        }
+export function addItem(name, weight) {
+    if (character.inventory.length >= character.maxSlots || character.currentWeight + weight > character.maxWeight) {
+        return false;
+    } else {
+        character.inventory.push({ name: name, weight: weight });
+        character.currentWeight += weight;
+        return character.inventory;
     }
-
-    const removeItem = (name) => {
-        for (let i = 0; i < items.length; i++) {
-            if (items[i].name === name) {
-                currentWeight -= items[i].weight
-                items.splice(i, 1)
-                return items
-            }
-        }
-        return items;
-    }
-
-    const addGold = (amount) => {
-        gold += amount
-        return true
-    }
-
-    const spendGold = (amount) => {
-        if (amount <= gold) {
-            gold = gold - amount
-        }
-        return false
-
-    }
-
-    const getInventory = () => {
-        return [items, gold, maxWeight, currentWeight]
-    }
-
-    return {
-        addItem,
-        removeItem,
-        addGold,
-        spendGold,
-        getInventory
-    };
 }
 
-//const inv = createInventory(10)
-//inv.addItem("Sword", 10);
-//inv.addGold(500);
-//inv.spendGold(700);
-//inv.removeItem("Sword")
-//console.log(inv.items)
-//console.log(inv.getInventory())
+export function removeItem(name) {
+    for (let i = 0; i < character.inventory.length; i++) {
+        if (character.inventory[i].name === name) {
+            character.currentWeight -= character.inventory[i].weight
+            character.inventory.splice(i, 1)
+            return character.inventory
+        }
+    }
+    return character.inventory;
+}
+
+export function addGold(amount) {
+    character.gold += amount
+    return true
+}
+
+export function spendGold(amount) {
+    if (amount <= character.gold) {
+        character.gold = character.gold - amount
+    }
+    return false
+}

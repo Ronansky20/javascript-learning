@@ -2,13 +2,18 @@ import { getModifier, formatModifier } from "./modifiercalculator.js";
 import { rollDice } from "./diceRoller.js";
 import { makeAttack } from "./attackSystem.js";
 
-let character = {
+export let character = {
     name: "Thorin Oakenshield",
     class: "Fighter",
     level: 7,
     stats: { str: 16, dex: 12, con: 14, int: 10, wis: 11, cha: 8 },
     weaponAttackBonus: 2,
     weaponDamageBonus: 2,
+    gold: 100,
+    inventory: [],
+    currentWeight: 0,
+    maxWeight: 100,
+    maxSlots: 10,
     hp: 45,
     maxHp: 50
 };
@@ -20,6 +25,8 @@ const saveCharacterButton = document.getElementById("characterSave")
 const hpDiv = document.getElementById("characterHp")
 const rollAttackButton = document.getElementById("rollAttackButton")
 const attackRollHistoryDiv = document.getElementById("attackRollHistory")
+const advantageCheckbox = document.getElementById("advantageCheckbox")
+const disadvantageCheckbox = document.getElementById("disadvantageCheckbox")
 
 const savedCharacter = localStorage.getItem('character');
 if (savedCharacter) {
@@ -63,26 +70,74 @@ export function rollDamage() {
     rollAttackButton.addEventListener("click", async () => {
         const targetAC = 15
 
-        const attackModifier = getModifier(character.stats.dex)
-        const weaponAttackBonus = character.weaponAttackBonus
+        async function rollAttackHandler(advantageDisadvantageResult) {
+            const attackModifier = getModifier(character.stats.dex)
+            const weaponAttackBonus = character.weaponAttackBonus
 
-        const attackBonus = attackModifier + weaponAttackBonus
+            const attackBonus = attackModifier + weaponAttackBonus
 
-        const damageModifier = getModifier(character.stats.str)
-        const weaponDamageBonus = character.weaponDamageBonus
+            const damageModifier = getModifier(character.stats.str)
+            const weaponDamageBonus = character.weaponDamageBonus
 
-        const damageBonus = damageModifier + weaponDamageBonus
-        const attackRoll = await makeAttack(attackBonus, damageBonus, targetAC)
+            console.log(advantageDisadvantageResult)
 
-        const attackRollHistory = document.createElement("div")
+            const damageBonus = damageModifier + weaponDamageBonus + advantageDisadvantageResult
+            const attackRoll = await makeAttack(attackBonus, damageBonus, targetAC)
 
-        if (attackRoll.hit === true) {
-            attackRollHistory.textContent = `You hit! You rolled a: ${attackRoll.attackRoll}`
-        } else {
-            attackRollHistory.textContent = `You missed.... You rolled a: ${attackRoll.attackRoll}`
+            const attackRollHistory = document.createElement("div")
+
+            if (attackRoll.hit === true) {
+                attackRollHistory.textContent = `You hit! You rolled a: ${attackRoll.attackRoll}`
+            } else {
+                attackRollHistory.textContent = `You missed.... You rolled a: ${attackRoll.attackRoll}`
+            }
+
+            attackRollHistoryDiv.appendChild(attackRollHistory)
         }
 
-        attackRollHistoryDiv.appendChild(attackRollHistory)
+        if (advantageCheckbox.checked) {
+            let highestResult = 0
+            console.log('You are rolling with advantage')
+
+            const doubleDice = [
+                rollDice(20, 2).then(result => result.total),
+                rollDice(20, 2).then(result => result.total)
+            ]
+
+            Promise.all(doubleDice).then(results => {
+                const [num1, num2] = results
+
+                if (num1 > num2) {
+                    highestResult = num1
+                    rollAttackHandler(highestResult)
+                } else if (num2 > num1) {
+                    highestResult = num2
+                    rollAttackHandler(highestResult)
+                }
+            })
+        }
+
+        if (disadvantageCheckbox.checked) {
+            let lowestResult = 0
+            console.log('You are rolling with disadvantage')
+
+            const doubleDice = [
+                rollDice(20, 2).then(result => result.total),
+                rollDice(20, 2).then(result => result.total)
+            ]
+
+            Promise.all(doubleDice).then(results => {
+                const [num1, num2] = results
+
+                if (num1 > num2) {
+                    lowestResult = num2
+                    rollAttackHandler(lowestResult)
+                } else if (num2 > num1) {
+                    lowestResult = num1
+                    rollAttackHandler(lowestResult)
+                }
+            })
+        }
     })
 }
 

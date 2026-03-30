@@ -9,7 +9,7 @@ Inventory System (1.3)
     [x]: Click stats to roll checks <- already exists
     [x]: Roll attacks with damage (2.3) <- attackSystem.js, attackBonus and damageBonus comes from character stats and equipment, give standard AC before making an encounter creator with random monsters from API
     [x]: Show roll history <- already exists
-    [ ]: Advantage/disadvantage option <- see 2.2 task 4 (diceRoller.js)
+    [x]: Advantage/disadvantage option <- see 2.2 task 4 (diceRoller.js)
 Save/Load (3.3)
     [x]: Save character to localStorage <- already exists
     [ ]: Load on page refresh <- Partially exists, must still save gold, weight and items

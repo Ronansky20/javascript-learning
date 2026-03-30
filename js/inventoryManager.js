@@ -1,19 +1,16 @@
-import { createInventory } from "./inventory.js";
+import { character } from "./characterSheet.js"
+import { addItem, removeItem } from "./inventory.js"
 
 const weightDiv = document.getElementById("weightDiv")
 const addItemField = document.getElementById("addItemField")
 const addItemForm = document.getElementById("addItemForm")
 const itemDiv = document.getElementById("itemDiv")
-const removeItemField = document.getElementById("removeItemField")
 const removeItemForm = document.getElementById("removeItemForm")
 
 const currentWeightDiv = document.createElement("div")
 const maxWeightDiv = document.createElement("div")
 
-
-
-export function inventorySizeDisplay(inventorySize) {
-    const inv = createInventory(inventorySize)
+export function inventorySizeDisplay() {
 
     const maxWeight = inv.getInventory()[2]
     const currentWeight = inv.getInventory()[3]
@@ -35,13 +32,15 @@ export function inventorySizeDisplay(inventorySize) {
             const itemToBeAdded = addItemField.value
             const itemArray = inv.getInventory()[0]
 
-            inv.addItem(itemToBeAdded, weightAddFieldInteger)
+            addItem(itemToBeAdded, weightAddFieldInteger)
             console.log('The item has been added', inv.getInventory()[0])
 
             const newCurrentWeight = inv.getInventory()[3]
             currentWeightDiv.textContent = `The current weight of your character is: ${newCurrentWeight}`
 
             console.log(itemArray)
+
+            character.inventory.push({ name: itemName, weight: weight });
 
             itemDiv.innerHTML = ''
             for (let i = 0; i < itemArray.length; i++) {
@@ -64,7 +63,7 @@ export function inventorySizeDisplay(inventorySize) {
 
         event.preventDefault();
         if (itemArray.some(item => item.name === itemRemoveFieldValue)) {
-            inv.removeItem(itemRemoveFieldValue)
+            removeItem(itemRemoveFieldValue)
 
             const newCurrentWeight = inv.getInventory()[3]
             currentWeightDiv.textContent = `The current weight of your character is: ${newCurrentWeight}`

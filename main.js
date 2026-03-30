@@ -3,12 +3,10 @@ import { addGold } from "./js/trackGold.js";
 import { inventorySizeDisplay } from "./js/inventoryManager.js";
 import { diceTray } from "./js/diceTray.js";
 
-const inventorySize = 10
-
 saveCharacter()
 renderCharacterSheet()
 getCharacterHp()
 rollDamage()
-inventorySizeDisplay(inventorySize)
-addGold(inventorySize)
+inventorySizeDisplay()
+addGold()
 diceTray()
