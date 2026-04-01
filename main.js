@@ -18,19 +18,17 @@ function retrieveCharacters() {
 
     characterSelect.addEventListener(`change`, () => {
         const savedCharacter = localStorage.getItem(characterSelect.value);
-
-        console.log('This is a click event')
         loadCharacter(JSON.parse(savedCharacter))
-        saveCharacter()
         renderCharacterSheet()
         getCharacterHp()
-        rollDamage()
         renderInventory()
-        inventorySizeDisplay()
+
         addGold()
     })
 }
-
+inventorySizeDisplay()
+saveCharacter()
+rollDamage()
 diceTray()
 retrieveCharacters()
 
