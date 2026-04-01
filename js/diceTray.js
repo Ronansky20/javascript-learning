@@ -12,7 +12,6 @@ export function diceTray() {
         indDiceTrayButton.textContent = `d${diceTrayButtonIndex}`;
 
         indDiceTrayButton.addEventListener("click", async (event) => {
-            diceTray.innerHTML = ''
             const diceRollResult = document.createElement("div");
             console.log(event.target);
 

@@ -1,10 +1,11 @@
 import { character } from "./characterSheet.js"
+import { addGold } from "./inventory.js"
 
 const goldDiv = document.getElementById("ownedGold")
 const addGoldButton = document.getElementById("addGoldButton")
 const goldOwnedDiv = document.createElement("div")
 
-export function addGold() {
+export function addGoldField() {
     function goldList() {
         goldOwnedDiv.classList.add("goldAmount")
         goldOwnedDiv.textContent = `You have ${character.gold} gold.`
@@ -17,8 +18,12 @@ export function addGold() {
         const addGoldField = document.getElementById("addGoldField").value
         const goldValue = parseInt(addGoldField)
 
-        inv.addGold(goldValue)
+        addGold(goldValue)
         console.log(character.gold)
         goldList()
     })
+}
+
+export function renderGoldDisplay() {
+    goldOwnedDiv.textContent = `You have ${character.gold} gold.`
 }

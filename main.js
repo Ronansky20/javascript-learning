@@ -1,5 +1,5 @@
 import { renderCharacterSheet, saveCharacter, getCharacterHp, rollDamage, character, loadCharacter } from "./js/characterSheet.js";
-import { addGold } from "./js/trackGold.js";
+import { addGoldField, renderGoldDisplay } from "./js/trackGold.js";
 import { inventorySizeDisplay, renderInventory } from "./js/inventoryManager.js";
 import { diceTray } from "./js/diceTray.js";
 
@@ -22,10 +22,10 @@ function retrieveCharacters() {
         renderCharacterSheet()
         getCharacterHp()
         renderInventory()
-
-        addGold()
+        renderGoldDisplay()
     })
 }
+addGoldField()
 inventorySizeDisplay()
 saveCharacter()
 rollDamage()
