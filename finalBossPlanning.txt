@@ -12,7 +12,7 @@ Inventory System (1.3)
     [x]: Advantage/disadvantage option <- see 2.2 task 4 (diceRoller.js)
 Save/Load (3.3)
     [x]: Save character to localStorage <- already exists
-    [ ]: Load on page refresh <- Partially exists, must still save gold, weight and items
+    [x]: Load on page refresh <- Partially exists, must still save gold, weight and items
     [ ]: Manage multiple characters <- dropdown of current keys which corresponds to current characters
 Bonus Features:
     [ ]: Fetch random monsters for encounters (2.4) <- pull from api, display specific stats. Use those to make encounters.
