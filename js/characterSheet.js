@@ -3,7 +3,7 @@ import { rollDice } from "./diceRoller.js";
 import { makeAttack } from "./attackSystem.js";
 
 export let character = {
-    name: "Thorin Oakenshield",
+    name: "Gandalf",
     class: "Fighter",
     level: 7,
     stats: { str: 16, dex: 12, con: 14, int: 10, wis: 11, cha: 8 },
@@ -28,9 +28,8 @@ const attackRollHistoryDiv = document.getElementById("attackRollHistory")
 const advantageCheckbox = document.getElementById("advantageCheckbox")
 const disadvantageCheckbox = document.getElementById("disadvantageCheckbox")
 
-const savedCharacter = localStorage.getItem('character');
-if (savedCharacter) {
-    character = JSON.parse(savedCharacter);
+export function loadCharacter(characterData) {
+    character = characterData;
 }
 
 export function renderCharacterSheet() {
@@ -167,9 +166,10 @@ export function saveCharacter() {
 
     saveCharacterButton.addEventListener("click", () => {
         const characterJSON = JSON.stringify(character)
-        localStorage.setItem('character', characterJSON)
+        localStorage.setItem(character.name, characterJSON)
 
-        const savedCharacter = localStorage.getItem('character')
+        const savedCharacter = localStorage.getItem(character.name)
         console.log(`Your character has been saved! ${savedCharacter}`)
     })
 }
+
